@@ -1,13 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.anpetrus.shrinkquizz.PartyFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Party" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="¿Cúantos tragos debe tomar para embriagarte?"
+        android:textSize="18sp" />
 
-</FrameLayout>
+    <RadioGroup
+        android:id="@+id/partyRg"
+        android:paddingLeft="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5 cervezas" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 cervezas" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toda la noche" />
+    </RadioGroup>
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/partyButton"
+    android:text="RESPONDER"/>
+</LinearLayout>
