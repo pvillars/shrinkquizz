@@ -1,9 +1,11 @@
 package com.anpetrus.shrinkquizz;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ public class PartyFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static PartyFragment newInstance(){
+    public static PartyFragment newInstance() {
         PartyFragment fragment = new PartyFragment();
         return fragment;
     }
@@ -40,9 +42,9 @@ public class PartyFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final RadioGroup radioGroup =  view.findViewById(R.id.partyRg);
+        final RadioGroup radioGroup = view.findViewById(R.id.partyRg);
 
-        Button button =  view.findViewById(R.id.partyButton);
+        Button button = view.findViewById(R.id.partyButton);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,19 +52,31 @@ public class PartyFragment extends Fragment {
 
                 int id = radioGroup.getCheckedRadioButtonId();
 
-                if(id!=-1){
+                if (id != -1) {
                     RadioButton radioButton = radioGroup.findViewById(id);
                     String answer = radioButton.getText().toString();
-                    Toast.makeText(getContext(),answer,Toast.LENGTH_SHORT).show();
-
-                }else{
-                    Toast.makeText(getContext(),"Debes marcar una opción",Toast.LENGTH_SHORT).show();
+                    showDialog(answer);
+                } else {
+                    Toast.makeText(getContext(), "Debes marcar una opción", Toast.LENGTH_SHORT).show();
                 }
 
-                Log.d("RADIO GROUP",String.valueOf(radioGroup.getCheckedRadioButtonId()));
+                Log.d("RADIO GROUP", String.valueOf(radioGroup.getCheckedRadioButtonId()));
             }
         });
 
 
+    }
+
+    private void showDialog(String answer) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Nivel de Fiesta");
+        alertDialog.setMessage(new PartyResult(answer).score());
+        alertDialog.setPositiveButton("yeahh", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 }
