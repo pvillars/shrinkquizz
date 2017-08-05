@@ -1,9 +1,11 @@
 package com.anpetrus.shrinkquizz;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,17 @@ public class LuckyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 boolean answer = mood.isChecked();
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                alertDialog.setTitle("El mensaje del día es:");
+                alertDialog.setMessage(new LuckyResult(answer).messageOfDay());
+                alertDialog.setPositiveButton("Oka", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alertDialog.show();
 
             }
         });

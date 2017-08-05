@@ -20,10 +20,11 @@
         android:enabled="false"
         android:layout_marginBottom="8dp"/>
     <Button
-        android:layout_marginBottom="54dp"
+        android:layout_marginBottom="84dp"
         android:id="@+id/luckyBtn"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
+        android:text="Mensaje"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

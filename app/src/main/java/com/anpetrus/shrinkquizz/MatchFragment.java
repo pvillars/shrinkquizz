@@ -1,9 +1,11 @@
 package com.anpetrus.shrinkquizz;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +84,19 @@ public class MatchFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int user = userSb.getProgress();
-                int lover = loverSb.getProgress();
+                int userAge = userSb.getProgress();
+                int loverAge = loverSb.getProgress();
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                alertDialog.setTitle("Su compatibilidad es:");
+                alertDialog.setMessage(new MatchResult(userAge,loverAge).compatibility());
+                alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alertDialog.show();
             }
         });
     }
